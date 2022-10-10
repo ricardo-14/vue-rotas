@@ -15,7 +15,7 @@ export default {
                 {label: 'Home', icon: 'pi pi-fw pi-home', to: '/'},
                 {label: 'Marcas', icon: 'pi pi-tag', to: '/marca'},
                 {label: 'Carros', icon: 'pi pi-car', to: '/carro'},
-                {label: 'Cor', icon: 'pi pi-palette', to: '/cor'},
+                {label: 'Cores', icon: 'pi pi-palette', to: '/cor'},
                 {label: 'About', icon: 'pi pi-prime', to: '/about'}
             ]
 		}

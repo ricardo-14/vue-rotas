@@ -33,6 +33,8 @@
             <td>{{c.preco}}</td>
             <td><span v-if="c.marca">{{c.marca.nome}}</span></td>
             <td><span v-if="c.cor">{{c.cor.nome}}</span></td>
+            <td><a href="javascript:void(0)" @click="editar(c)">Editar</a></td>
+            <td><a href="javascript:void(0)" @click="excluir(c)">Excluir</a></td>
         </tr>
     </table>
   </div>
@@ -56,6 +58,16 @@ export default {
         },
         novo() {
             this.$router.push('/carro-form/')
+        },
+        excluir(carro) {
+            const id = carro.id
+            axios
+                .delete(`https://carros-app-example.herokuapp.com/carro/${id}`)
+                .then(this.load())
+                .catch(error => alert(error))
+        },
+        editar(carro) {
+            this.$router.push(`/carro-form/${carro.id}`)
         }
     },
     mounted() {

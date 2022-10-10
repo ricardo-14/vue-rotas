@@ -16,9 +16,7 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            marca: {
-                nome: ''
-            }
+            marca: {}
         }
     },
     mounted() {
@@ -31,10 +29,7 @@ export default {
             })
         }
         else {
-            this.marca = {
-                id: null,
-                nome: ''
-            }
+            this.marca = {}
         }
     },
     methods: {
@@ -45,7 +40,7 @@ export default {
         },
         voltar() {
             this.$router.go(-1)
-        },
+        }
     }
 }
 </script>

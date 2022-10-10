@@ -3,13 +3,14 @@
     <h1>Marcas</h1>
    <DataTable :value="marcas">
         <Column field="id" header="ID"></Column>
-        <Column field="nome" header="Nome"></Column>   
+        <Column field="nome" header="Nome"><a href="javascript:void(0)" @click="editar(m)">Editar</a></Column>
+        <Column></Column>   
     </DataTable>
     <br>
     <Button class="button-marca" label="Nova marca" icon="pi pi-plus" iconPos="left" @click="novo()"/>
 </div>
 <br>
-<div>
+    <div>
     <table>
         <tr>
             <th>Id</th>
