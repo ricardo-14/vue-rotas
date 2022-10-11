@@ -3,11 +3,20 @@
     <h1>Marcas</h1>
    <DataTable :value="marcas">
         <Column field="id" header="ID"></Column>
-        <Column field="nome" header="Nome"><a href="javascript:void(0)" @click="editar(m)">Editar</a></Column>
-        <Column></Column>   
+        <Column field="nome" header="Nome"></Column>
+        <Column headerStyle="width: 4rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
+            <template #body="{data}">
+                <Button type="button" icon="pi pi-pencil" class="p-button-warning" @click="editar(data)" />
+            </template>
+        </Column>
+        <Column headerStyle="width: 4rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
+            <template #body="{data}">
+                <Button type="button" icon="pi pi-trash" class="p-button-danger" @click="excluir(data)"></Button>
+            </template>
+        </Column>  
     </DataTable>
     <br>
-    <Button class="button-marca" label="Nova marca" icon="pi pi-plus" iconPos="left" @click="novo()"/>
+    <Button class="button-marca p-button-success" label="Nova marca" icon="pi pi-plus"  iconPos="left" @click="novo()"/>
 </div>
 <br>
     <div>
@@ -38,7 +47,8 @@ export default {
     },
     methods: {
         editar(marca) {
-            this.$router.push(`/marca-form/${marca.id}`)
+            const id = marca.id
+            this.$router.push(`/marca-form/${id}`)
         },
         novo() {
             this.$router.push('/marca-form/')
@@ -68,4 +78,5 @@ export default {
 .button-marca {
     float: right;
 }
+
 </style>
