@@ -15,6 +15,8 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Row from 'primevue/row';
 import Dropdown from 'primevue/dropdown';
+import Chart from 'primevue/chart';
+
 
 import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primevue/resources/primevue.min.css'
@@ -26,6 +28,7 @@ app.use(router)
 app.use(ToastService)
 
 app.component('Button', Button);
+app.component('Chart', Chart);
 app.component('TabMenu', TabMenu);
 app.component('DataTable', DataTable);
 app.component('Column', Column);
@@ -36,6 +39,5 @@ app.component('InputMask', InputMask);
 app.component('Checkbox', Checkbox);
 app.component('CascadeSelect', CascadeSelect);
 app.component('Dropdown', Dropdown);
-
 
 app.mount('#app')

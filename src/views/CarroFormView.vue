@@ -1,32 +1,42 @@
 <template>
-     <h1>Cadastro de Carros</h1>
-    <div>
-        <form @submit.prevent="salvar()">
+<div class="corpo">
+    <div class="container">
+        <div class="header">
+            <h2>Cadastro de Carros</h2>
+        </div>
 
-        <label for="nome" id="label">Nome: </label>
-        <InputText type="text" v-model="carro.nome"/><br><br>
-        
-        <label for="" id="label">Ano Fabricação: </label>
-        <InputText type="text" v-model="carro.anoFabricacao"/><br><br>
+        <form id="form" class="form-carro" @submit.prevent="salvar()">
+            <div class="form-control">
+                <label for="nome">Nome </label>
+                <InputText type="text" v-model="carro.nome"/>
+            </div>
+            <div class="form-control">
+                <label for="">Ano Fabricação </label>
+                <InputText type="text" v-model="carro.anoFabricacao"/>
+            </div>
+            <div class="form-control">
+                <label for="">Ano Modelo </label>
+                <InputText type="text" v-model="carro.anoModelo"/>
+            </div>
+            <div class="form-control">
+                <label for="">Preço </label>
+                <InputText type="number" v-model="carro.preco"/>
+            </div>
+            <div class="form-control-dropdown">
+                <label for="">Marca </label>
+                <Dropdown v-model="carro.marca" :options="marcas" optionLabel="nome" placeholder="Selecione uma marca" />
+            </div>
+            <div class="form-control-dropdown">
+                <label for="">Cor </label>
+                <Dropdown v-model="carro.cor" :options="cores" optionLabel="nome" placeholder="Selecione uma cor" />
+            </div>
 
-        <label for="" id="label">Ano Modelo: </label>
-        <InputText type="text" v-model="carro.anoModelo"/><br><br>
-        
-        <label for="" id="label">Preço: </label>
-        <InputText type="number" v-model="carro.preco"/><br><br>
-
-        <label for="" id="label">Marca: </label>
-        <Dropdown v-model="carro.marca" :options="marcas" optionLabel="nome" optionValue="nome" placeholder="Selecione uma marca" /><br><br>
-
-        <label for="" id="label">Cor: </label>
-        <Dropdown v-model="carro.cor" :options="cores" optionLabel="nome" optionValue="nome" placeholder="Selecione uma cor" /><br><br>
-
-        <Button type="submit" label="Salvar" icon="pi pi-check" iconPos="right"/><br><br>
-        <a href="javascript:void(0)" @click="voltar()">Voltar</a>
-
+            <Button type="submit" label="Salvar"/>
+            <Button label="Voltar" class="p-button-link" @click="voltar()"/>
         </form>
     </div>
-  </template>
+</div>
+</template>
   
   <script>
   import axios from 'axios'
@@ -76,8 +86,72 @@
   </script>
   
   <style>
-   #label {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        font-weight: bold;
-    }
-  </style>
+  .corpo {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  background-color: #eee;
+  padding: 20px;
+}
+
+.form-carro {
+  padding: 20px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control-dropdown {
+  margin-bottom: 30px;
+  position: relative;
+  border-radius: 0;
+  box-shadow: 0;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.form-carro .p-inputtext {
+ 
+  display: block;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-carro .p-button {
+  font-size: 14px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.form-carro .p-dropdown {
+    margin-top: 10px;
+    width: 100%;
+    border: 0;
+}
+</style>
+
+  

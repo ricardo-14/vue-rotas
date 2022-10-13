@@ -1,35 +1,31 @@
 <template>
   <div>
-    <h1>Cor dos carros</h1>
-    <DataTable :value="cores">
-        <Column field="id" header="ID"></Column>
-        <Column field="nome" header="Nome"></Column>
-        <Column field="rgb" header="RGB"></Column>
-        <Column field="ativo" header="Ativos"></Column>   
+    <DataTable :value="cores" responsiveLayout="scroll">
+      <template #header>
+                <div class="table-header">
+                    <h1>Cores</h1>
+                        <Button class="p-button-success" label="Nova cor" icon="pi pi-plus" iconPos="left" @click="novo()"/>
+                        <Button icon="pi pi-refresh" @Click="reload()"/>
+                </div>
+        </template>  
+        <Column field="id" header="ID" :sortable="true"></Column>
+        <Column field="nome" header="Nome" :sortable="true"></Column>
+        <Column field="rgb" header="RGB" :sortable="true"></Column>
+        <Column field="ativo" header="Ativo" :sortable="true"></Column>
+        <Column headerStyle="width: 4rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
+            <template #body="{data}">
+              <Button type="button" icon="pi pi-pencil" class="p-button-warning" @click="editar(data)"/>
+            </template>
+        </Column>
+        <Column headerStyle="width: 4rem; text-align: center" bodyStyle="text-align: center; overflow: visible">
+            <template #body="{data}">
+              <Button type="button" icon="pi pi-trash" class="p-button-danger" @click="excluir(data)"></Button>
+            </template>
+        </Column>
+        <template #footer>
+            Total de cores cadastradas: {{cores ? cores.length : 0 }}
+        </template>   
     </DataTable>
-    <br>
-    <Button class="button-cor" label="Nova cor" icon="pi pi-plus" iconPos="left" @click="novo()"/>
-  </div><br>
-
-  <div>  
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>RGB</th>
-            <th>Ativo</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr v-for="co in cores" :key="co.id">
-            <td>{{co.id}}</td>
-            <td>{{co.nome}}</td>
-            <td>{{co.rgb}}</td>
-            <td>{{co.ativo}}</td>
-            <td><a href="javascript:void(0)" @click="editar(co)">Editar</a></td>
-            <td><a href="javascript:void(0)" @click="excluir(co)">Excluir</a></td>
-        </tr>
-    </table>
   </div>
 </template>
 
@@ -61,7 +57,11 @@ export default {
                 .delete(`https://carros-app-example.herokuapp.com/cor/${id}`)
                 .then(this.load())
                 .catch(error => alert(error))
+                
     },
+    reload() {
+      location.reload()
+    }
   },
   mounted() {
     this.load()
@@ -71,7 +71,11 @@ export default {
 </script>
 
 <style>
-.button-cor {
-    float: right;
+
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 </style>
