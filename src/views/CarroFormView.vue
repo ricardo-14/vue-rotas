@@ -51,7 +51,7 @@
       mounted() {
         const id = this.$route.params.id
         if (id) {
-            axios.get(`https://carros-app-example.herokuapp.com/carro/${id}`).then(resp => this.carro = resp.data)
+            axios.get(`http://localhost:8080/carro/${id}`).then(resp => this.carro = resp.data)
             .catch(error => {
                 alert(error)
                 this.$router.push("/carro")
@@ -61,19 +61,19 @@
             this.carro = {}
         }
         axios
-        .get('https://carros-app-example.herokuapp.com/marca')
+        .get('http://localhost:8080/marca')
         .then(resp => {
            this.marcas = resp.data
         })
         axios
-        .get('https://carros-app-example.herokuapp.com/cor')
+        .get('http://localhost:8080/cor')
         .then(resp => {
            this.cores = resp.data
         })
     },
     methods: {
         salvar() {
-            axios.post('https://carros-app-example.herokuapp.com/carro', this.carro)
+            axios.post('http://localhost:8080/carro', this.carro)
             .then(() => this.$toast.add({severity:'success', summary: 'Registro gravado!'}))
             .catch(error => this.$toast.add({severity:'error', summary: `Problema na gravação ${error}`}))
         },

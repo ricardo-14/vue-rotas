@@ -46,14 +46,14 @@ export default {
         excluir(marca) {
             const id = marca.id
             axios
-                .delete(`https://carros-app-example.herokuapp.com/marca/${id}`)
+                .delete(`http://localhost:8080/marca/${id}`)
                 .then(this.load())
                 .catch(error => alert(error))
                 
         },
         load() {
             axios
-            .get('https://carros-app-example.herokuapp.com/marca')
+            .get('http://localhost:8080/marca')
             .then(resp => {
                 this.marcas = resp.data
             })
