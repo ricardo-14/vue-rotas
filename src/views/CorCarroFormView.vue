@@ -42,7 +42,7 @@ export default {
     mounted() {
         const id = this.$route.params.id
         if (id) {
-            axios.get(`https://carros-app-example.herokuapp.com/cor/${id}`)
+            axios.get(`http://localhost:8080/cor/${id}`)
             .then(resp => this.cor = resp.data)
             .catch(error => {
                 alert(error)
@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         salvar() {
-            axios.post('https://carros-app-example.herokuapp.com/cor', this.cor)
+            axios.post('http://localhost:8080/cor', this.cor)
             .then(() => this.$toast.add({severity:'success', summary: 'Registro gravado!'}))
             .catch(error => this.$toast.add({severity:'error', summary: `Problema na gravação ${error}`}))
         },

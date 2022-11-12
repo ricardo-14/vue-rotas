@@ -40,7 +40,7 @@ export default {
   methods: {
     load() {
       axios
-      .get('https://carros-app-example.herokuapp.com/cor')
+      .get('http://localhost:8080/cor')
       .then(resp => {
         this.cores = resp.data
       })
@@ -54,7 +54,7 @@ export default {
     excluir(cor) {
             const id = cor.id
             axios
-                .delete(`https://carros-app-example.herokuapp.com/cor/${id}`)
+                .delete(`http://localhost:8080/cor/${id}`)
                 .then(this.load())
                 .catch(error => alert(error))
                 
